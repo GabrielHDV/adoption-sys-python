@@ -1,0 +1,150 @@
+/* Reset e base */
+* {
+  box-sizing: border-box;
+  font-family: 'Segoe UI', sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: #f9fbfc;
+  color: #2c3e50;
+}
+
+/* Cabeçalho */
+header {
+  background-color: #4a90e2;
+  color: white;
+  padding: 1rem 2rem;
+  text-align: center;
+  height: 100px; /* opcional: fixa a altura do header */
+  display: flex;
+  align-items: center;
+}
+header img {
+  height: 50px;
+  margin-right: 1rem;
+}
+
+ nav {
+      display: flex;
+      justify-content: center;
+      gap: 7rem;
+      background-color: #ffffff;
+      padding: 0.8rem 10.8rem;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+      flex-wrap: wrap;
+    }
+
+    nav button {
+      background-color: transparent;
+      border: 1px solid #f76c5e;
+      color: #f76c5e;
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: 0.3s ease;
+    }
+
+    nav button:hover {
+      background-color: #f76c5e;
+      color: white;
+    }
+
+  .logo-header {
+  height: 150px;   /* ou qualquer valor em px, %, rem etc. */
+  width: auto;    /* isso evita distorções */
+}
+
+.titulo-painel {
+  font-family: 'Roboto', sans-serif; /* ou outra fonte que preferir */
+  font-size: 1.5rem; /* aumenta ou diminui o tamanho */
+  font-weight: bold; /* negrito */
+  color: #ffffff; /* branco, por exemplo */
+}
+/* Banner de boas-vindas */
+.welcome-banner {
+  padding: 1.5rem 2rem;
+  background-color: #eaf4fc;
+  border-bottom: 1px solid #c8dff7;
+  font-size: 1.2rem;
+}
+
+/* Status geral */
+.status-box {
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem 2rem;
+  background-color: #ffffff;
+  margin: 1rem;
+  border-radius: 10px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+}
+
+.status-item {
+  text-align: center;
+}
+
+.status-item h3 {
+  color: #4a90e2;
+}
+
+/* Painel / Cards */
+.dashboard {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  padding: 1rem;
+}
+
+.card {
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  margin: 1rem;
+  padding: 1rem;
+  width: 300px;
+}
+
+.card h3 {
+  margin-top: 0;
+  color: #4a90e2;
+}
+
+.card p {
+  margin: 0.5rem 0;
+}
+
+.card button {
+  background-color: #f76c5e;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-top: 0.5rem;
+  margin-right: 0.5rem;
+  transition: background-color 0.2s ease;
+}
+
+.card button:hover {
+  background-color: #e05548;
+}
+
+/* Notificações */
+.notifications {
+  background-color: #fff3f0;
+  padding: 1rem 2rem;
+  margin: 1rem;
+  border-left: 5px solid #f76c5e;
+  border-radius: 6px;
+  font-size: 1rem;
+}
+
+.container-add-btn {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 1.5rem;
+}
+
