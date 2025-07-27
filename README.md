@@ -1,11 +1,5 @@
 # 🐾 SeuPet - Sistema de Adoção de Animais
 
-![Status](https://img.shields.io/badge/status-em%20desenvolvimento-yellow)
-![GitHub last commit](https://img.shields.io/github/last-commit/SEU_USUARIO/SEU_REPOSITORIO)
-![GitHub repo size](https://img.shields.io/github/repo-size/SEU_USUARIO/SEU_REPOSITORIO)
-![GitHub issues](https://img.shields.io/github/issues/SEU_USUARIO/SEU_REPOSITORIO)
-![GitHub license](https://img.shields.io/github/license/SEU_USUARIO/SEU_REPOSITORIO)
-
 ---
 
 ## 📚 Descrição
