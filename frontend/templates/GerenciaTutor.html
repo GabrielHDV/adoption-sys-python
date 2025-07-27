@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Gerenciar Tutores</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <style>
+    
+    .container {
+      padding: 2rem;
+    }
+
+    .top-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.5rem;
+    }
+
+    .top-bar h2 {
+      margin: 0;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background-color: white;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    }
+
+    th, td {
+      padding: 1rem;
+      text-align: left;
+      border-bottom: 1px solid #eee;
+    }
+
+    th {
+      background-color: #eaf4fc;
+    }
+
+    .btn-editar, .btn-remover {
+      padding: 0.4rem 0.8rem;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 0.9rem;
+      margin-right: 0.3rem;
+    }
+
+    .btn-editar {
+      background-color: #4a90e2;
+      color: white;
+    }
+
+    .btn-editar:hover {
+      background-color: #3b7cc4;
+    }
+
+    .btn-remover {
+      background-color: #f76c5e;
+      color: white;
+    }
+
+    .btn-remover:hover {
+      background-color: #e05548;
+    }
+
+    @media (max-width: 768px) {
+      table, thead, tbody, th, td, tr {
+        display: block;
+      }
+
+      th {
+        display: none;
+      }
+
+      td {
+        border: none;
+        padding: 0.8rem;
+        position: relative;
+      }
+
+      td::before {
+        content: attr(data-label);
+        font-weight: bold;
+        display: block;
+        margin-bottom: 0.3rem;
+        color: #4a90e2;
+      }
+
+      .top-bar {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div style="display: flex; align-items: center; justify-content: space-between; padding: 0 2rem;">
+      <img src="{{ url_for('static', filename='SeuPet_logoSec.png') }}">
+      <h1 class="titulo-painel">Gerenciamento de Tutores</h1>
+    </div>
+  </header>
+ 
+<div id="menu-container"></div>
+<script src="{{ url_for('static', filename='menu.js') }}"></script>
+
+  <div class="container">
+    <div class="top-bar">
+      <h2>Tutores Cadastrados</h2>
+    </div>
+
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Nome</th>
+          <th>CPF</th>
+          <th>CEP</th>
+          <th>Ações</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td data-label="ID">001</td>
+          <td data-label="Nome">Maria Silva</td>
+          <td data-label="CPF">123.456.789-00</td>
+          <td data-label="CEP">37200-000</td>
+          <td data-label="Ações">
+            <button class="btn-editar">Editar</button>
+            <button class="btn-remover">Remover</button>
+          </td>
+        </tr>
+        <tr>
+          <td data-label="ID">002</td>
+          <td data-label="Nome">João Souza</td>
+          <td data-label="CPF">987.654.321-00</td>
+          <td data-label="CEP">37100-100</td>
+          <td data-label="Ações">
+            <button class="btn-editar">Editar</button>
+            <button class="btn-remover">Remover</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div id="mensagem-remocao" style="display:none; color: green; font-weight: bold; margin: 1rem 2rem;">
+  Tutor removido
+</div>
+
+<script>
+  // Captura todos os botões "Remover"
+  const botoesRemover = document.querySelectorAll('.btn-remover');
+
+  botoesRemover.forEach((botao) => {
+    botao.addEventListener('click', () => {
+      // Remove a linha do tutor (pai do botão é o td, pai do td é o tr)
+      const linha = botao.closest('tr');
+      linha.remove();
+
+      // Mostra a mensagem de confirmação
+      const mensagem = document.getElementById('mensagem-remocao');
+      mensagem.style.display = 'block';
+
+      // Opcional: esconde a mensagem depois de 3 segundos
+      setTimeout(() => {
+        mensagem.style.display = 'none';
+      }, 3000);
+    });
+  });
+</script>
+
+
+</body>
+</html> 

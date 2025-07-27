@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Animais Disponíveis para Adoção</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <style>
+    .animal-list {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1.5rem;
+      padding: 1rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .animal-card {
+      background-color: white;
+      border-radius: 10px;
+      box-shadow: 0 1px 5px rgba(0,0,0,0.1);
+      overflow: hidden;
+      width: 280px;
+      display: flex;
+      flex-direction: column;
+      transition: box-shadow 0.3s ease;
+    }
+
+    .animal-card:hover {
+      box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+    }
+
+    .animal-img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      border-bottom: 1px solid #eee;
+    }
+
+    .animal-content {
+      padding: 1rem;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .animal-name {
+      margin: 0 0 0.5rem 0;
+      color: #4a90e2;
+      font-weight: 700;
+      font-size: 1.2rem;
+    }
+
+    .animal-info {
+      color: #555;
+      font-size: 0.9rem;
+      margin-bottom: 1rem;
+      line-height: 1.3;
+    }
+
+    .animal-actions button {
+      background-color: transparent;
+      border: none;
+      color: #4a90e2;
+      font-weight: 600;
+      font-size: 1rem;
+      cursor: pointer;
+      padding: 0;
+      align-self: flex-start;
+      transition: color 0.3s ease;
+    }
+
+    .animal-actions button:hover {
+      color: #f76c5e;
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div style="display: flex; align-items: center; justify-content: space-between; padding: 0 2rem;">
+      <img src="{{ url_for('static', filename='SeuPet_logoSec.png') }}">
+      <h1 class="titulo-painel"> </h1>
+    </div>
+  </header>
+
+<div id="menu-container"></div>
+<script src="{{ url_for('static', filename='menu.js') }}"></script>
+
+  <section class="animal-list">
+    <article class="animal-card">
+      <img class="animal-img" src="https://placedog.net/400/300?id=101" alt="Bob, cachorro SRD" />
+      <div class="animal-content">
+        <h2 class="animal-name">Bob</h2>
+        <p class="animal-info">Cachorro SRD, 2 anos, saudável e vacinado. Muito amigável e carinhoso.</p>
+        <div class="animal-actions">
+          <button>Ver Detalhes</button>
+        </div>
+      </div>
+    </article>
+
+    <article class="animal-card">
+      <img class="animal-img" src="https://placekitten.com/400/300" alt="Luna, gato Persa" />
+      <div class="animal-content">
+        <h2 class="animal-name">Luna</h2>
+        <p class="animal-info">Gata Persa, 1 ano, castrada e vacinada. Tranquila e ideal para apartamento.</p>
+        <div class="animal-actions">
+          <button>Ver Detalhes</button>
+        </div>
+      </div>
+    </article>
+
+    <article class="animal-card">
+      <img class="animal-img" src="https://placedog.net/400/300?id=202" alt="Max, cachorro Golden Retriever" />
+      <div class="animal-content">
+        <h2 class="animal-name">Max</h2>
+        <p class="animal-info">Golden Retriever, 3 anos, vacinado e dócil. Adora brincar ao ar livre.</p>
+        <div class="animal-actions">
+          <button>Ver Detalhes</button>
+        </div>
+      </div>
+    </article>
+  </section>
+
+</body>
+</html>
+

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Painel do Administrador</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<style>
+nav {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;  /* <-- espaçamento entre os botões */
+  background-color: #ffffff;
+  padding: 0.8rem 0rem;  /* <-- espaçamento interno em cima/baixo e nas laterais */
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  flex-wrap: wrap;
+}
+</style>
+<body>
+
+   <header>
+    <div style="display: flex; align-items: center; justify-content: space-between; width: 100%;">
+      <img src="{{ url_for('static', filename='SeuPet_logoSec.png') }}">
+      <h1 class="titulo-painel">Painel do Administrador</h1>
+    </div>
+  </header>
+
+  <nav>
+    <button>Gerenciar Tutores</button>
+    <button>Gerenciar Animais</button>
+    <button>Gerenciar Adoções</button>
+    <button>Cadastrar Novo Animal</button>
+    <button>Cadastrar Novo Tutor</button>
+    <button>Logout</button>
+  </nav>
+
+  <section class="welcome-banner">
+    Bem-vindo, <strong>Administrador</strong>! Aqui você pode gerenciar todos os dados da plataforma.
+  </section>
+
+  <section class="dashboard">
+    <div class="card">
+      <h3>Tutores</h3>
+      <p>Visualize, edite ou remova cadastros de tutores.</p>
+      <button>Ir para Tutores</button>
+    </div>
+
+    <div class="metric-box">
+      <h3>Total de Animais</h3>
+      <p>12</p>
+    </div>
+
+
+    <div class="card">
+      <h3>Animais</h3>
+      <p>Gerencie os animais disponíveis para adoção.</p>
+      <button>Ir para Animais</button>
+    </div>
+
+    <div class="card">
+      <h3>Adoções</h3>
+      <p>Acompanhe o andamento das solicitações de adoção.</p>
+      <button>Ir para Adoções</button>
+    </div>
+
+    <div class="card">
+      <h3>Cadastros</h3>
+      <p>Adicione novos tutores e animais ao sistema.</p>
+      <button>Ir para Cadastros</button>
+    </div>
+  </section>
+
+  <section class="notifications">
+    📢 Última atualização: 1 novo tutor cadastrado hoje.
+  </section>
+
+  <script>
+  // Espera o conteúdo da página carregar
+  document.addEventListener("DOMContentLoaded", () => {
+    // Redireciona os botões do menu
+    document.querySelector("nav").addEventListener("click", (e) => {
+      if (e.target.tagName === "BUTTON") {
+        const texto = e.target.innerText;
+
+        if (texto.includes("Tutores")) {
+          window.location.href = "GerenciaTutor.html";
+        } else if (texto.includes("Animais")) {
+          window.location.href = "GerenciaAnimais.html";
+        } else if (texto.includes("Adoções")) {
+          window.location.href = "GerenciaAdocoes.html";
+        } else if (texto.includes("Logout")) {
+          alert("Você saiu do sistema.");
+          window.location.href = "login.html"; // ajuste para o nome real da sua tela de login
+        }
+      }
+    });
+
+    // Redireciona os botões dos cards
+    const botoesCard = document.querySelectorAll(".card button");
+    botoesCard.forEach((btn) => {
+      const texto = btn.innerText;
+
+      if (texto.includes("Tutores")) {
+        btn.onclick = () => window.location.href = "GerenciaTutor.html";
+      } else if (texto.includes("Animais")) {
+        btn.onclick = () => window.location.href = "GerenciaAnimais.html";
+      } else if (texto.includes("Adoções")) {
+        btn.onclick = () => window.location.href = "ControleAdocao.html";
+      } else if (texto.includes("Cadastros")) {
+        btn.onclick = () => window.location.href = "GerenciaAnimais.html";
+      }
+    });
+  });
+</script>
+
+
+</body>
+</html>

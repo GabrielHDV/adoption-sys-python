@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Controle de Animais</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+  <style>
+
+    section {
+      padding: 1rem 2rem;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background-color: white;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    th, td {
+      padding: 1rem;
+      text-align: left;
+      border-bottom: 1px solid #eee;
+    }
+
+    th {
+      background-color: #eaf4fc;
+    }
+
+    button {
+      padding: 0.4rem 0.7rem;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .editar {
+      background-color: #4a90e2;
+      color: white;
+    }
+
+    .remover {
+      background-color: #f76c5e;
+      color: white;
+    }
+
+    .salvar {
+      background-color: #4a90e2;
+      color: white;
+    }
+
+    .cancelar {
+      background-color: #f76c5e;
+      color: white;
+    }
+
+    .btn-add {
+      margin-bottom: 1rem;
+      background-color: #4a90e2;
+      color: white;
+    }
+
+    input[type="text"], select {
+      padding: 0.3rem;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      width: 90%;
+    }
+    
+    
+  </style>
+</head>
+<body>
+
+<header>
+    <div style="display: flex; align-items: center; justify-content: space-between; padding: 0 2rem;">
+      <img src="{{ url_for('static', filename='SeuPet_logoSec.png') }}">
+      <h1 class="titulo-painel">Gerenciamento de Animais</h1>
+    </div>
+  </header>
+
+<div id="menu-container"></div>
+<script src="{{ url_for('static', filename='menu.js') }}"></script>
+
+
+<section>
+  <table id="tabelaAnimais">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Nome</th>
+        <th>Raça</th>
+        <th>Status de Adoção</th>
+        <th>Ações</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>1</td>
+        <td>Rex</td>
+        <td>Golden Retriever</td>
+        <td>Disponível</td>
+        <td>
+          <button class="editar" onclick="editarLinha(this)">Editar</button>
+          <button class="remover" onclick="removerLinha(this)">Remover</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- Botão movido para baixo -->
+<div class="container-add-btn">
+  <button class="btn-add" onclick="adicionarLinha()">Adicionar Animal</button>
+</div>
+
+<script>
+  let proximoId = 2;
+
+  function editarLinha(botao) {
+    const linha = botao.closest("tr");
+    const celulas = linha.querySelectorAll("td");
+    const nome = celulas[1].innerText;
+    const raca = celulas[2].innerText;
+    const status = celulas[3].innerText;
+
+    celulas[1].innerHTML = `<input type="text" value="${nome}">`;
+    celulas[2].innerHTML = `<input type="text" value="${raca}">`;
+    celulas[3].innerHTML = `
+      <select>
+        <option value="Disponível" ${status === "Disponível" ? "selected" : ""}>Disponível</option>
+        <option value="Adotado" ${status === "Adotado" ? "selected" : ""}>Adotado</option>
+      </select>
+    `;
+
+    celulas[4].innerHTML = `
+      <button class="salvar" onclick="salvarLinha(this)">Salvar</button>
+      <button class="cancelar" onclick="cancelarEdicao(this, '${nome}', '${raca}', '${status}')">Cancelar</button>
+    `;
+  }
+
+  function salvarLinha(botao) {
+    const linha = botao.closest("tr");
+    const celulas = linha.querySelectorAll("td");
+
+    const novoNome = celulas[1].querySelector("input").value;
+    const novaRaca = celulas[2].querySelector("input").value;
+    const novoStatus = celulas[3].querySelector("select").value;
+
+    celulas[1].innerText = novoNome;
+    celulas[2].innerText = novaRaca;
+    celulas[3].innerText = novoStatus;
+
+    celulas[4].innerHTML = `
+      <button class="editar" onclick="editarLinha(this)">Editar</button>
+      <button class="remover" onclick="removerLinha(this)">Remover</button>
+    `;
+  }
+
+  function cancelarEdicao(botao, nome, raca, status) {
+    const linha = botao.closest("tr");
+    const celulas = linha.querySelectorAll("td");
+
+    celulas[1].innerText = nome;
+    celulas[2].innerText = raca;
+    celulas[3].innerText = status;
+
+    celulas[4].innerHTML = `
+      <button class="editar" onclick="editarLinha(this)">Editar</button>
+      <button class="remover" onclick="removerLinha(this)">Remover</button>
+    `;
+  }
+
+  function removerLinha(botao) {
+    const confirmar = confirm("Tem certeza que deseja remover este animal?");
+    if (confirmar) {
+      const linha = botao.closest("tr");
+      linha.remove();
+    }
+  }
+
+  function adicionarLinha() {
+    const tabela = document.getElementById("tabelaAnimais").getElementsByTagName("tbody")[0];
+
+    const novaLinha = tabela.insertRow();
+
+    const celulaId = novaLinha.insertCell(0);
+    const celulaNome = novaLinha.insertCell(1);
+    const celulaRaca = novaLinha.insertCell(2);
+    const celulaStatus = novaLinha.insertCell(3);
+    const celulaAcoes = novaLinha.insertCell(4);
+
+    celulaId.innerText = proximoId++;
+
+    celulaNome.innerHTML = `<input type="text" name="nome" placeholder="Nome">`;
+    celulaRaca.innerHTML = `<input type="text" name="raca" placeholder="Raça">`;
+
+    celulaStatus.innerHTML = `
+      <select>
+        <option value="Disponível">Disponível</option>
+        <option value="Adotado">Adotado</option>
+      </select>
+    `;
+
+    celulaAcoes.innerHTML = `
+      <button class="salvar" onclick="salvarLinha(this)">Salvar</button>
+      <button class="cancelar" onclick="cancelarInsercao(this)">Cancelar</button>
+    `;
+  }
+
+  function cancelarInsercao(botao) {
+    const linha = botao.closest("tr");
+    linha.remove();
+    proximoId--; // desfaz o incremento se cancelar
+  }
+</script>
+
+</body>
+</html>
+

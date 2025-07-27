@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <title>Painel do Tutor</title>
+  <style>
+
+  </style>
+</head>
+<body>
+
+  <header>
+    <div style="display: flex; align-items: center; justify-content: space-between; padding: 0 2rem;">
+      <img src="{{ url_for('static', filename='SeuPet_logoSec.png') }}">
+      <h1 class="titulo-painel">Painel do Tutor</h1>
+    </div>
+  </header>
+
+<div id="menu-container"></div>
+<script src="{{ url_for('static', filename='menu.js') }}"></script>
+
+  <section class="welcome-banner">
+    Bem-vindo, <strong>Maria Silva</strong>! Acompanhe suas adoções aqui!
+  </section>
+
+  <section class="status-box">
+    <div class="status-item">
+      <h3>3</h3>
+      <p>Animais Adotados</p>
+    </div>
+    <div class="status-item">
+      <h3>1</h3>
+      <p>Adoção Pendente</p>
+    </div>
+  </section>
+
+  <section class="dashboard">
+    <div class="card">
+      <h3>Bob (Cachorro)</h3>
+      <p>Raça: SRD<br>Idade: 2 anos<br>Saudável, vacinado.</p>
+      <button>Ver Detalhes do Animal</button>
+      <button>Acompanhar Processo de Adoção</button>
+    </div>
+
+    <div class="card">
+      <h3>Luna (Gato)</h3>
+      <p>Raça: Persa<br>Idade: 1 ano<br>Castrada, vacinada.</p>
+      <button>Ver Detalhes do Animal</button>
+      <button>Acompanhar Processo de Adoção</button>
+    </div>
+  </section>
+
+  <section class="notifications">
+    📢 Você tem uma nova atualização: sua solicitação de adoção foi aprovada!
+  </section>
+
+</body>
+</html>

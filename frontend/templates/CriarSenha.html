@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Criar Senha</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    body {
+      margin: 0;
+      background-color: #f9fbfc;
+      color: #2c3e50;
+    }
+
+    header {
+      background-color: #4a90e2;
+      color: white;
+      padding: 1rem 2rem;
+      text-align: center;
+    }
+
+    .content {
+      max-width: 500px;
+      margin: 2rem auto;
+      background-color: #ffffff;
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+    }
+
+    h2 {
+      text-align: center;
+      margin-top: 0;
+    }
+
+    label {
+      display: block;
+      margin-top: 1rem;
+      font-weight: bold;
+    }
+
+    input {
+      width: 100%;
+      padding: 0.75rem;
+      margin-top: 0.25rem;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      font-size: 1rem;
+    }
+
+    button {
+      width: 100%;
+      margin-top: 2rem;
+      padding: 0.75rem;
+      background-color: #4a90e2;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-weight: bold;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #3a78c2;
+    }
+
+    .note {
+      font-size: 0.9rem;
+      color: #7f8c8d;
+      margin-top: 0.5rem;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="content">
+    <h2>Crie uma senha de acesso</h2>
+    <form>
+      <label for="senha">Senha</label>
+      <input type="password" id="senha" name="senha" required>
+
+      <label for="confirmar">Confirmar Senha</label>
+      <input type="password" id="confirmar" name="confirmar" required>
+
+      <p class="note">A senha deve conter pelo menos 8 caracteres.</p>
+
+      <button type="submit">Salvar Senha</button>
+    </form>
+  </div>
+  <script>
+document.querySelector("form").addEventListener("submit", async function(e) {
+  e.preventDefault();
+
+  const senha = document.getElementById("senha").value;
+  const confirmar = document.getElementById("confirmar").value;
+
+  if (senha.length < 8) {
+    alert("A senha deve conter pelo menos 8 caracteres.");
+    return;
+  }
+
+  if (senha !== confirmar) {
+    alert("As senhas não coincidem.");
+    return;
+  }
+
+  try {
+    const resposta = await fetch("/salvar_senha", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ senha }),
+    });
+
+    if (resposta.ok) {
+      window.location.href = "/telaprincipal";
+    } else {
+      const erro = await resposta.json();
+      alert("Erro ao salvar senha: " + erro.erro);
+    }
+  } catch (err) {
+    alert("Erro na requisição: " + err.message);
+  }
+});
+</script>
+
+</body>
+</html>
